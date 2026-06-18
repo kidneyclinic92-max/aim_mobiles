@@ -27,13 +27,33 @@ jobs:
       - name: Build with webpack (not Turbopack)
         run: node scripts/build.js
 
+      - name: Verify production build output
+        run: |
+          test -f .next/BUILD_ID
+          echo "BUILD_ID=$(cat .next/BUILD_ID)"
+          du -sh .next node_modules
+
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: node-app
+          include-hidden-files: true
+          if-no-files-found: error
           path: |
-            .
-            !.git
+            .next
+            node_modules
+            public
+            src
+            scripts
+            data
+            package.json
+            package-lock.json
+            next.config.ts
+            postcss.config.mjs
+            tsconfig.json
+            startup.sh
+            .npmrc
+            .deployment
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,6 +67,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: node-app
+
+      - name: Verify artifact before deploy
+        run: |
+          test -f .next/BUILD_ID
+          echo "Deploying build $(cat .next/BUILD_ID)"
 
       - name: Login to Azure
         uses: azure/login@v2
