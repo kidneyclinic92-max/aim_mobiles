@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aim Mobiles
+
+Premium e-commerce storefront for mobile phones and accessories. Built with **Next.js 16** (App Router), **TypeScript**, and **Tailwind CSS v4**.
+
+## Features
+
+- Dark-mode premium UI with glassmorphism, gradients, and micro-interactions
+- Full product catalog with filters, search, sorting, and quick view
+- Product detail pages with image zoom, variants, specs, and reviews
+- Shopping cart with localStorage persistence
+- Wishlist with localStorage persistence
+- Toast notifications for cart/wishlist actions
+- Multi-step checkout with demo payment flow
+- Order confirmation and order tracking pages
+- Fully responsive (mobile-first)
+- SEO-friendly with metadata API
+- Accessible focus states and ARIA labels
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start development server |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/                  # Next.js App Router pages
+├── components/
+│   ├── home/             # Homepage sections
+│   ├── layout/           # Header, Footer, Cart sidebar
+│   ├── product/          # Product detail components
+│   ├── shop/             # Shop grid, filters, search
+│   └── ui/               # Reusable UI primitives
+├── hooks/                # Custom React hooks
+├── lib/                  # Types, utils, product data
+└── store/                # Cart, wishlist, toast contexts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Next.js 16** — App Router, SSR, static generation
+- **TypeScript** — Type safety
+- **Tailwind CSS v4** — Utility-first styling
+- **Lucide React** — Icons
+- **localStorage** — Cart & wishlist persistence
 
-## Deploy on Vercel
+## Demo Checkout
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Use any card details at checkout (e.g. `4242 4242 4242 4242`). No real payment is processed.
