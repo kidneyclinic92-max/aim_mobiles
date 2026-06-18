@@ -2,10 +2,8 @@ const { spawnSync } = require("node:child_process");
 const path = require("node:path");
 const nextBin = require("./next-bin");
 
-const port = process.env.PORT || "3000";
 const root = path.join(__dirname, "..");
-
-const result = spawnSync(process.execPath, [nextBin, "start", "-p", port], {
+const result = spawnSync(process.execPath, [nextBin, "build"], {
   stdio: "inherit",
   cwd: root,
   env: process.env,
