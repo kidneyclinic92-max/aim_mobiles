@@ -47,7 +47,7 @@ function TrackOrderContent() {
         <h1 className="text-4xl font-bold text-white">
           Track Your <span className="text-gradient">Order</span>
         </h1>
-        <p className="mt-4 text-gray-400">
+        <p className="mt-4 text-zinc-400">
           Enter your order number to see real-time shipping updates.
         </p>
       </AnimatedSection>
@@ -79,13 +79,13 @@ function TrackOrderContent() {
           <div className="glass-card p-6 sm:p-8">
             <div className="flex items-center justify-between mb-8">
               <div>
-                <p className="text-sm text-gray-500">Order Number</p>
+                <p className="text-sm text-zinc-500">Order Number</p>
                 <p className="font-mono text-lg font-semibold text-cyan-400">
                   {orderId.toUpperCase()}
                 </p>
               </div>
               <div className="text-right">
-                <p className="text-sm text-gray-500">Status</p>
+                <p className="text-sm text-zinc-500">Status</p>
                 <p className="text-sm font-medium text-emerald-400 flex items-center gap-1 justify-end">
                   <Truck className="h-4 w-4" />
                   Out for Delivery
@@ -111,12 +111,12 @@ function TrackOrderContent() {
                     <div className="flex-1">
                       <p
                         className={`text-sm font-medium ${
-                          step.completed ? "text-white" : "text-gray-500"
+                          step.completed ? "text-white" : "text-zinc-500"
                         }`}
                       >
                         {step.status}
                       </p>
-                      <p className="text-xs text-gray-500">{step.date}</p>
+                      <p className="text-xs text-zinc-500">{step.date}</p>
                     </div>
                     {step.completed && !step.active && (
                       <CheckCircle className="h-4 w-4 text-emerald-400" />
@@ -132,7 +132,7 @@ function TrackOrderContent() {
                 <p className="text-sm font-medium text-white">
                   Delivery Address
                 </p>
-                <p className="text-sm text-gray-400 mt-1">
+                <p className="text-sm text-zinc-400 mt-1">
                   123 Tech Boulevard, San Francisco, CA 94105
                 </p>
               </div>
@@ -144,7 +144,7 @@ function TrackOrderContent() {
                 <p className="text-sm font-medium text-white">
                   Carrier: Aim Express
                 </p>
-                <p className="text-sm text-gray-400 mt-1">
+                <p className="text-sm text-zinc-400 mt-1">
                   Tracking: AE{orderId.replace(/[^A-Z0-9]/gi, "").slice(0, 12)}
                 </p>
               </div>

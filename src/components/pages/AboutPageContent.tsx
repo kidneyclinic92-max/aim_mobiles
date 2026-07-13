@@ -21,7 +21,7 @@ export function AboutPageContent() {
             <h1 className="mt-4 text-4xl font-bold text-white sm:text-5xl">
               {about.title} <span className="text-gradient">{about.titleHighlight}</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-gray-400">{about.intro}</p>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">{about.intro}</p>
           </AnimatedSection>
         </div>
       </section>
@@ -32,7 +32,7 @@ export function AboutPageContent() {
             {about.stats.map((stat, i) => (
               <AnimatedSection key={stat.label} delay={i * 100} className="text-center">
                 <p className="text-4xl font-bold text-gradient">{stat.value}</p>
-                <p className="mt-2 text-sm text-gray-400">{stat.label}</p>
+                <p className="mt-2 text-sm text-zinc-400">{stat.label}</p>
               </AnimatedSection>
             ))}
           </div>
@@ -57,7 +57,7 @@ export function AboutPageContent() {
             <AnimatedSection delay={100} className="text-center">
               <h2 className="text-3xl font-bold text-white">{about.storyTitle}</h2>
               {about.storyParagraphs.map((p, i) => (
-                <p key={i} className="mt-4 text-gray-400 leading-relaxed">{p}</p>
+                <p key={i} className="mt-4 text-zinc-400 leading-relaxed">{p}</p>
               ))}
             </AnimatedSection>
           </div>
@@ -81,7 +81,7 @@ export function AboutPageContent() {
                       <Icon className="h-6 w-6" />
                     </div>
                     <h3 className="text-lg font-semibold text-white">{value.title}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-400">{value.description}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-zinc-400">{value.description}</p>
                   </div>
                 </AnimatedSection>
               );

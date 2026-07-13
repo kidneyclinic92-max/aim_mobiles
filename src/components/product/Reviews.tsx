@@ -28,12 +28,12 @@ export function Reviews({ reviews, rating, reviewCount }: ReviewsProps) {
                     className={`h-4 w-4 ${
                       i < Math.round(rating)
                         ? "fill-amber-400 text-amber-400"
-                        : "text-gray-600"
+                        : "text-zinc-600"
                     }`}
                   />
                 ))}
               </div>
-              <p className="mt-1 text-sm text-gray-500">
+              <p className="mt-1 text-sm text-zinc-500">
                 Based on {reviewCount.toLocaleString()} reviews
               </p>
             </div>
@@ -43,7 +43,7 @@ export function Reviews({ reviews, rating, reviewCount }: ReviewsProps) {
         <div className="space-y-2 w-full max-w-xs">
           {distribution.map(({ stars, pct }) => (
             <div key={stars} className="flex items-center gap-3 text-sm">
-              <span className="w-3 text-gray-400">{stars}</span>
+              <span className="w-3 text-zinc-400">{stars}</span>
               <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
               <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
                 <div
@@ -51,7 +51,7 @@ export function Reviews({ reviews, rating, reviewCount }: ReviewsProps) {
                   style={{ width: `${pct}%` }}
                 />
               </div>
-              <span className="w-8 text-right text-gray-500 text-xs">
+              <span className="w-8 text-right text-zinc-500 text-xs">
                 {Math.round(pct)}%
               </span>
             </div>
@@ -80,7 +80,7 @@ export function Reviews({ reviews, rating, reviewCount }: ReviewsProps) {
                         </span>
                       )}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-zinc-500">
                       {new Date(review.date).toLocaleDateString("en-US", {
                         year: "numeric",
                         month: "long",
@@ -99,14 +99,14 @@ export function Reviews({ reviews, rating, reviewCount }: ReviewsProps) {
                 </div>
               </div>
               <h4 className="mt-3 font-medium text-white">{review.title}</h4>
-              <p className="mt-2 text-sm leading-relaxed text-gray-400">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-400">
                 {review.content}
               </p>
             </article>
           ))}
         </div>
       ) : (
-        <p className="text-center text-gray-500 py-8">
+        <p className="text-center text-zinc-500 py-8">
           No reviews yet. Be the first to review this product!
         </p>
       )}

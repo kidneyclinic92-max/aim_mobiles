@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Heart, Minus, Plus, ShoppingBag, Star, Truck } from "lucide-react";
 import type { Product } from "@/lib/types";
 import { calculateDiscount, cn, formatPrice } from "@/lib/utils";
@@ -59,13 +60,13 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       {/* Breadcrumb */}
-      <nav className="mb-8 text-sm text-gray-500" aria-label="Breadcrumb">
+      <nav className="mb-8 text-sm text-zinc-500" aria-label="Breadcrumb">
         <ol className="flex items-center gap-2">
-          <li><a href="/" className="hover:text-cyan-400">Home</a></li>
+          <li><Link href="/" className="transition-colors hover:text-cyan-400">Home</Link></li>
           <li>/</li>
-          <li><a href="/shop" className="hover:text-cyan-400">Shop</a></li>
+          <li><Link href="/shop" className="transition-colors hover:text-cyan-400">Shop</Link></li>
           <li>/</li>
-          <li className="text-gray-300 capitalize">{product.category}</li>
+          <li className="text-zinc-300 capitalize">{product.category}</li>
           <li>/</li>
           <li className="text-white truncate">{product.name}</li>
         </ol>
@@ -83,7 +84,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             {discount && <Badge variant="sale">-{discount}%</Badge>}
           </div>
 
-          <p className="text-sm font-medium uppercase tracking-wider text-gray-500">
+          <p className="text-sm font-medium uppercase tracking-wider text-zinc-500">
             {product.brand}
           </p>
           <h1 className="mt-1 text-3xl font-bold text-white sm:text-4xl">
@@ -99,17 +100,17 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                     "h-4 w-4",
                     i < Math.round(product.rating)
                       ? "fill-amber-400 text-amber-400"
-                      : "text-gray-600"
+                      : "text-zinc-600"
                   )}
                 />
               ))}
             </div>
-            <span className="text-sm text-gray-400">
+            <span className="text-sm text-zinc-400">
               {product.rating} ({product.reviewCount} reviews)
             </span>
           </div>
 
-          <p className="mt-4 text-gray-400 leading-relaxed">
+          <p className="mt-4 text-zinc-400 leading-relaxed">
             {product.description}
           </p>
 
@@ -118,7 +119,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               {formatPrice(selectedVariant.price)}
             </span>
             {product.originalPrice && (
-              <span className="text-lg text-gray-500 line-through">
+              <span className="text-lg text-zinc-500 line-through">
                 {formatPrice(product.originalPrice)}
               </span>
             )}
@@ -127,7 +128,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           {/* Color selector */}
           {product.colors.length > 1 && (
             <div className="mt-8">
-              <p className="text-sm font-medium text-gray-300 mb-3">
+              <p className="text-sm font-medium text-zinc-300 mb-3">
                 Color: <span className="text-white">{selectedColor.name}</span>
               </p>
               <div className="flex gap-3">
@@ -153,7 +154,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
           {/* Variant selector */}
           {product.variants.length > 1 && (
             <div className="mt-6">
-              <p className="text-sm font-medium text-gray-300 mb-3">Storage</p>
+              <p className="text-sm font-medium text-zinc-300 mb-3">Storage</p>
               <div className="flex flex-wrap gap-2">
                 {product.variants.map((variant) => (
                   <button
@@ -164,7 +165,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                       "rounded-xl border px-4 py-2.5 text-sm font-medium transition-all",
                       selectedVariant.id === variant.id
                         ? "border-cyan-500 bg-cyan-500/10 text-cyan-400"
-                        : "border-white/10 text-gray-300 hover:border-white/20",
+                        : "border-white/10 text-zinc-300 hover:border-white/20",
                       !variant.inStock && "opacity-40 cursor-not-allowed line-through"
                     )}
                   >
@@ -181,7 +182,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             <div className="flex items-center rounded-xl border border-white/10 bg-white/5">
               <button
                 onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                className="p-3 text-gray-400 hover:text-white"
+                className="p-3 text-zinc-400 hover:text-white"
                 aria-label="Decrease quantity"
               >
                 <Minus className="h-4 w-4" />
@@ -191,7 +192,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               </span>
               <button
                 onClick={() => setQuantity(quantity + 1)}
-                className="p-3 text-gray-400 hover:text-white"
+                className="p-3 text-zinc-400 hover:text-white"
                 aria-label="Increase quantity"
               >
                 <Plus className="h-4 w-4" />
@@ -213,8 +214,8 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
               className={cn(
                 "flex h-12 w-12 items-center justify-center rounded-xl border transition-all",
                 inWishlist
-                  ? "border-purple-500/30 bg-purple-500/10 text-purple-400"
-                  : "border-white/10 text-gray-400 hover:border-white/20 hover:text-white"
+                  ? "border-cyan-400/40 bg-cyan-400/10 text-cyan-300"
+                  : "border-white/10 text-zinc-400 hover:border-white/25 hover:text-white"
               )}
               aria-label={inWishlist ? "Remove from wishlist" : "Add to wishlist"}
             >
@@ -222,7 +223,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
             </button>
           </div>
 
-          <div className="mt-6 flex items-center gap-2 text-sm text-gray-400">
+          <div className="mt-6 flex items-center gap-2 text-sm text-zinc-400">
             <Truck className="h-4 w-4 text-cyan-400" />
             Free shipping on orders over $100
           </div>
@@ -240,7 +241,7 @@ export function ProductDetailClient({ product }: ProductDetailClientProps) {
                 "px-6 py-3 text-sm font-medium capitalize transition-all border-b-2 -mb-px",
                 activeTab === tab
                   ? "border-cyan-500 text-cyan-400"
-                  : "border-transparent text-gray-400 hover:text-white"
+                  : "border-transparent text-zinc-400 hover:text-white"
               )}
             >
               {tab === "specs" ? "Specifications" : `Reviews (${product.reviewCount})`}

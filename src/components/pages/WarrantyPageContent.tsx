@@ -19,7 +19,7 @@ export function WarrantyPageContent() {
         <h1 className="text-4xl font-bold text-white">
           {warranty.title} <span className="text-gradient">{warranty.titleHighlight}</span>
         </h1>
-        <p className="mx-auto mt-4 max-w-2xl text-gray-400">{warranty.intro}</p>
+        <p className="mx-auto mt-4 max-w-2xl text-zinc-400">{warranty.intro}</p>
       </AnimatedSection>
 
       <AnimatedSection className="mb-16">
@@ -32,7 +32,7 @@ export function WarrantyPageContent() {
           </h2>
           <ul className="grid gap-3 sm:grid-cols-2">
             {warranty.coverage.map((item) => (
-              <li key={item} className="flex items-start gap-3 text-sm text-gray-300">
+              <li key={item} className="flex items-start gap-3 text-sm text-zinc-300">
                 <CheckCircle className="h-4 w-4 shrink-0 text-cyan-400 mt-0.5" />
                 {item}
               </li>
@@ -48,7 +48,7 @@ export function WarrantyPageContent() {
             <div key={s.step} className="glass-card p-6 text-center">
               <span className="text-3xl font-bold text-gradient">{s.step}</span>
               <h3 className="mt-3 text-lg font-semibold text-white">{s.title}</h3>
-              <p className="mt-2 text-sm text-gray-400">{s.description}</p>
+              <p className="mt-2 text-sm text-zinc-400">{s.description}</p>
             </div>
           ))}
         </div>
@@ -58,16 +58,16 @@ export function WarrantyPageContent() {
         <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8">
           <h2 className="mb-4 text-center text-xl font-bold text-white">
             <span className="inline-flex items-center justify-center gap-3">
-              <FileText className="h-5 w-5 text-gray-400" />
+              <FileText className="h-5 w-5 text-zinc-400" />
               {warranty.notCoveredTitle}
             </span>
           </h2>
-          <ul className="space-y-2 text-sm text-gray-400">
+          <ul className="space-y-2 text-sm text-zinc-400">
             {warranty.notCovered.map((item) => (
               <li key={item}>• {item}</li>
             ))}
           </ul>
-          <p className="mt-4 text-sm text-gray-500">{warranty.notCoveredNote}</p>
+          <p className="mt-4 text-sm text-zinc-500">{warranty.notCoveredNote}</p>
         </div>
       </AnimatedSection>
 
@@ -75,7 +75,7 @@ export function WarrantyPageContent() {
         <div className="glass-card p-8 inline-block">
           <RefreshCw className="mx-auto h-8 w-8 text-cyan-400 mb-4" />
           <h3 className="text-xl font-bold text-white">{warranty.ctaTitle}</h3>
-          <p className="mt-2 text-gray-400 text-sm">{warranty.ctaDescription}</p>
+          <p className="mt-2 text-zinc-400 text-sm">{warranty.ctaDescription}</p>
           <Link href={warranty.ctaHref} className="mt-6 inline-block">
             <Button>{warranty.ctaButton}</Button>
           </Link>

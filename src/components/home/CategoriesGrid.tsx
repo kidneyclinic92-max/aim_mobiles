@@ -19,7 +19,6 @@ export function CategoriesGrid() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14">
           <SectionHeader
-            eyebrow={section.eyebrow}
             title={section.title}
             highlight={section.highlight}
             description={section.description}
@@ -35,7 +34,7 @@ export function CategoriesGrid() {
               <AnimatedSection key={cat.id} delay={i * 70} className={isFeatured ? "col-span-2 lg:col-span-1 lg:row-span-1" : ""}>
                 <Link
                   href={`/shop?category=${cat.id}`}
-                  className={`group relative block overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 hover:border-cyan-500/30 hover:shadow-[0_20px_60px_rgba(0,212,255,0.08)] ${isFeatured ? "aspect-[2/1] lg:aspect-auto" : ""}`}
+                  className={`group relative block overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 hover:border-cyan-500/30 hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)] ${isFeatured ? "aspect-[2/1] lg:aspect-auto" : ""}`}
                 >
                   <div className={`relative overflow-hidden ${isFeatured ? "h-full min-h-[200px]" : "aspect-[4/3]"}`}>
                     <Image
@@ -51,7 +50,7 @@ export function CategoriesGrid() {
                   <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6">
                     <div className="flex items-end justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-400 backdrop-blur-md border border-cyan-500/20 transition-all group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_20px_rgba(0,212,255,0.3)]">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-400 backdrop-blur-md border border-cyan-500/20 transition-all group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>

@@ -69,10 +69,10 @@ export function Header() {
               />
             </div>
             <div className="hidden leading-tight sm:block">
-              <span className="block text-base font-bold text-zinc-500">
+              <span className="block text-base font-bold text-zinc-100">
                 {brandPrefix}{brandSuffix}
               </span>
-              <span className="block text-[11px] text-zinc-500">Premium Mobile Store</span>
+              <span className="block text-[11px] text-zinc-400">Premium Mobile Store</span>
             </div>
           </Link>
 
@@ -85,10 +85,10 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium whitespace-nowrap transition-colors",
+                  "relative text-sm font-medium whitespace-nowrap transition-colors",
                   isActive(link.href)
-                    ? "text-zinc-100"
-                    : "text-zinc-400 hover:text-zinc-200"
+                    ? "text-white after:absolute after:-bottom-1.5 after:left-0 after:right-0 after:h-0.5 after:rounded-full after:bg-cyan-400"
+                    : "text-zinc-400 hover:text-white"
                 )}
               >
                 {link.label}
@@ -99,7 +99,7 @@ export function Header() {
           <div className="relative z-10 ml-auto flex shrink-0 items-center gap-1">
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="flex h-10 w-10 items-center justify-center rounded-none border border-white/10 text-zinc-400 transition-colors hover:border-white/20 hover:text-zinc-200"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
               aria-label="Search"
             >
               <Search className="h-[18px] w-[18px]" />
@@ -107,12 +107,12 @@ export function Header() {
 
             <Link
               href="/wishlist"
-              className="relative hidden h-10 w-10 items-center justify-center rounded-none border border-transparent text-zinc-400 transition-colors hover:border-white/10 hover:text-zinc-200 sm:flex"
+              className="relative hidden h-10 w-10 items-center justify-center rounded-xl text-zinc-400 transition-colors hover:bg-white/5 hover:text-white sm:flex"
               aria-label={`Wishlist (${wishlistItems.length})`}
             >
               <Heart className="h-[18px] w-[18px]" />
               {wishlistItems.length > 0 && (
-                <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-none border border-white/10 bg-zinc-800 text-[9px] font-bold text-zinc-200">
+                <span className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-cyan-400 text-[10px] font-bold text-zinc-950">
                   {wishlistItems.length}
                 </span>
               )}
@@ -120,12 +120,12 @@ export function Header() {
 
             <button
               onClick={toggleCart}
-              className="relative flex h-10 w-10 items-center justify-center rounded-none border border-transparent text-zinc-400 transition-colors hover:border-white/10 hover:text-zinc-200"
+              className="relative flex h-10 w-10 items-center justify-center rounded-xl text-zinc-400 transition-colors hover:bg-white/5 hover:text-white"
               aria-label={`Cart (${itemCount})`}
             >
               <ShoppingBag className="h-[18px] w-[18px]" />
               {itemCount > 0 && (
-                <span className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-none border border-white/10 bg-zinc-800 text-[9px] font-bold text-zinc-200">
+                <span className="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-cyan-400 text-[10px] font-bold text-zinc-950">
                   {itemCount}
                 </span>
               )}
@@ -133,7 +133,7 @@ export function Header() {
 
             <button
               onClick={() => setMobileOpen(true)}
-              className="flex h-10 w-10 items-center justify-center rounded-none border border-transparent text-zinc-400 transition-colors hover:text-zinc-200 lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-400 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
               aria-label="Menu"
             >
               <Menu className="h-[18px] w-[18px]" />

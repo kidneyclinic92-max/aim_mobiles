@@ -21,10 +21,10 @@ export default function CartPage() {
       <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="mx-auto flex h-24 w-24 items-center justify-center rounded-3xl bg-white/5 mb-6">
-            <ShoppingBag className="h-12 w-12 text-gray-600" />
+            <ShoppingBag className="h-12 w-12 text-zinc-600" />
           </div>
           <h1 className="text-2xl font-bold text-white">Your cart is empty</h1>
-          <p className="mt-2 text-gray-400">
+          <p className="mt-2 text-zinc-400">
             Looks like you haven&apos;t added anything yet.
           </p>
           <Link href="/shop" className="mt-8 inline-block">
@@ -40,7 +40,7 @@ export default function CartPage() {
       <AnimatedSection className="text-center">
         <Link
           href="/shop"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 mb-8"
+          className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-cyan-400 mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Continue Shopping
@@ -48,7 +48,7 @@ export default function CartPage() {
 
         <h1 className="text-center text-3xl font-bold text-white">
           Shopping Cart
-          <span className="ml-2 text-lg font-normal text-gray-400">
+          <span className="ml-2 text-lg font-normal text-zinc-400">
             ({itemCount} {itemCount === 1 ? "item" : "items"})
           </span>
         </h1>
@@ -74,14 +74,14 @@ export default function CartPage() {
                 <div className="flex flex-1 flex-col">
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-xs text-gray-500">{product.brand}</p>
+                      <p className="text-xs text-zinc-500">{product.brand}</p>
                       <Link
                         href={`/product/${product.id}`}
                         className="text-base font-semibold text-white hover:text-cyan-400"
                       >
                         {product.name}
                       </Link>
-                      <p className="mt-1 text-sm text-gray-400">
+                      <p className="mt-1 text-sm text-zinc-400">
                         {item.color}
                         {variant.storage !== "N/A" && ` · ${variant.storage}`}
                       </p>
@@ -90,7 +90,7 @@ export default function CartPage() {
                       onClick={() =>
                         removeItem(item.productId, item.variantId, item.color)
                       }
-                      className="rounded-lg p-2 text-gray-500 hover:bg-red-500/10 hover:text-red-400"
+                      className="rounded-lg p-2 text-zinc-500 hover:bg-red-500/10 hover:text-red-400"
                       aria-label="Remove item"
                     >
                       <Trash2 className="h-4 w-4" />
@@ -107,7 +107,7 @@ export default function CartPage() {
                             item.quantity - 1
                           )
                         }
-                        className="p-2 text-gray-400 hover:text-white"
+                        className="p-2 text-zinc-400 hover:text-white"
                         aria-label="Decrease quantity"
                       >
                         <Minus className="h-4 w-4" />
@@ -124,7 +124,7 @@ export default function CartPage() {
                             item.quantity + 1
                           )
                         }
-                        className="p-2 text-gray-400 hover:text-white"
+                        className="p-2 text-zinc-400 hover:text-white"
                         aria-label="Increase quantity"
                       >
                         <Plus className="h-4 w-4" />
@@ -146,11 +146,11 @@ export default function CartPage() {
               Order Summary
             </h2>
             <div className="space-y-3 text-sm">
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between text-zinc-400">
                 <span>Subtotal</span>
                 <span>{formatPrice(subtotal)}</span>
               </div>
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between text-zinc-400">
                 <span>Shipping</span>
                 <span>
                   {shipping === 0 ? (
@@ -160,7 +160,7 @@ export default function CartPage() {
                   )}
                 </span>
               </div>
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between text-zinc-400">
                 <span>Estimated Tax</span>
                 <span>{formatPrice(tax)}</span>
               </div>

@@ -43,7 +43,7 @@ function OrderConfirmationContent() {
         <h1 className="text-3xl font-bold text-white sm:text-4xl">
           {order?.status === "pending" ? "Order Received!" : "Order Confirmed!"}
         </h1>
-        <p className="mt-4 text-gray-400">
+        <p className="mt-4 text-zinc-400">
           {order?.status === "pending"
             ? "Thank you for your order. Our team will review it shortly. You'll receive a confirmation email once it's approved."
             : "Thank you for your purchase. Your order has been placed successfully."}
@@ -56,23 +56,23 @@ function OrderConfirmationContent() {
           </div>
           <dl className="space-y-3 text-sm">
             <div className="flex justify-between">
-              <dt className="text-gray-500">Order Number</dt>
+              <dt className="text-zinc-500">Order Number</dt>
               <dd className="font-mono font-medium text-cyan-400">{orderId}</dd>
             </div>
             {order && (
               <>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Total Paid</dt>
+                  <dt className="text-zinc-500">Total Paid</dt>
                   <dd className="font-medium text-white">
                     {formatPrice(order.total)}
                   </dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Email</dt>
+                  <dt className="text-zinc-500">Email</dt>
                   <dd className="text-white">{order.shipping.email}</dd>
                 </div>
                 <div className="flex justify-between">
-                  <dt className="text-gray-500">Estimated Delivery</dt>
+                  <dt className="text-zinc-500">Estimated Delivery</dt>
                   <dd className="text-white">3–5 business days</dd>
                 </div>
               </>
@@ -80,7 +80,7 @@ function OrderConfirmationContent() {
           </dl>
         </div>
 
-        <p className="mt-6 text-sm text-gray-500">
+        <p className="mt-6 text-sm text-zinc-500">
           {order?.status === "pending"
             ? "A confirmation email will be sent to your inbox after admin approval."
             : "A confirmation email has been sent to your inbox. You can track your order using the link below."}

@@ -27,26 +27,18 @@ export function getDefaultContent(): SiteContent {
     },
     navigation: {
       main: [
-        { href: "/shop?sort=newest", label: "New Arrivals" },
-        { href: "/shop?category=smartphones", label: "Smartphones" },
-        { href: "/shop?category=earbuds", label: "Earbuds" },
-        { href: "/shop?category=smartwatches", label: "Smartwatches" },
-        { href: "/shop?category=accessories", label: "Accessories" },
-        { href: "/shop?sort=bestseller", label: "Deals" },
+        { href: "/", label: "Home" },
+        { href: "/shop", label: "Shop" },
         { href: "/about", label: "About" },
         { href: "/contact", label: "Contact" },
       ],
       mobileMain: [
         { href: "/", label: "Home" },
         { href: "/shop", label: "Shop" },
-        { href: "/wishlist", label: "Wishlist" },
         { href: "/about", label: "About Us" },
         { href: "/contact", label: "Contact" },
       ],
-      mobileSecondary: [
-        { href: "/warranty", label: "Warranty" },
-        { href: "/track-order", label: "Track Order" },
-      ],
+      mobileSecondary: [],
       footerShop: [
         { href: "/shop", label: "All Products" },
         { href: "/shop?category=smartphones", label: "Smartphones" },
@@ -55,10 +47,8 @@ export function getDefaultContent(): SiteContent {
         { href: "/shop?category=accessories", label: "Accessories" },
       ],
       footerSupport: [
-        { href: "/contact", label: "Contact Us" },
-        { href: "/warranty", label: "Warranty" },
-        { href: "/track-order", label: "Track Order" },
         { href: "/about", label: "About Us" },
+        { href: "/contact", label: "Contact Us" },
       ],
       social: [
         { href: "#", label: "Twitter" },

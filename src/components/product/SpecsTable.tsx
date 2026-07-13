@@ -12,7 +12,7 @@ export function SpecsTable({ specs }: SpecsTableProps) {
               key={key}
               className={i % 2 === 0 ? "bg-white/[0.02]" : "bg-transparent"}
             >
-              <td className="px-5 py-3.5 font-medium text-gray-400 w-2/5">
+              <td className="px-5 py-3.5 font-medium text-zinc-400 w-2/5">
                 {key}
               </td>
               <td className="px-5 py-3.5 text-white">{value}</td>

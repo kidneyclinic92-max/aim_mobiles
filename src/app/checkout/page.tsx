@@ -10,11 +10,13 @@ import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
+import { useToast } from "@/store/toast-context";
 
 type Step = "shipping" | "payment" | "review";
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { showToast } = useToast();
   const { getLineItems, subtotal, clearCart } = useCart();
   const lineItems = getLineItems();
   const [step, setStep] = useState<Step>("shipping");
@@ -98,7 +100,7 @@ export default function CheckoutPage() {
       clearCart();
       router.push(`/order-confirmation?order=${data.orderId}`);
     } catch {
-      alert("Failed to place order. Please try again.");
+      showToast("Failed to place order. Please try again.", "error");
     } finally {
       setProcessing(false);
     }
@@ -115,7 +117,7 @@ export default function CheckoutPage() {
       <AnimatedSection className="text-center">
         <Link
           href="/cart"
-          className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-cyan-400 mb-8"
+          className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-cyan-400 mb-8"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Cart
@@ -134,13 +136,13 @@ export default function CheckoutPage() {
                   const currentIndex = steps.findIndex((st) => st.id === step);
                   if (stepIndex <= currentIndex) setStep(s.id);
                 }}
-                className={`flex items-center gap-2 rounded-none px-3 py-2 text-sm font-medium transition-all sm:px-4 ${
+                className={`flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition-all sm:px-4 ${
                   step === s.id
-                    ? "border border-white/20 bg-white/10 text-white"
+                    ? "border border-cyan-400/30 bg-cyan-400/15 text-cyan-300"
                     : steps.findIndex((st) => st.id === s.id) <
                         steps.findIndex((st) => st.id === step)
                       ? "text-emerald-400"
-                      : "text-gray-500"
+                      : "text-zinc-500"
                 }`}
               >
                 <s.icon className="h-4 w-4" />
@@ -255,7 +257,7 @@ export default function CheckoutPage() {
                   <h2 className="text-xl font-semibold text-white">
                     Payment Details
                   </h2>
-                  <span className="text-xs text-gray-500">(Demo — no real charges)</span>
+                  <span className="text-xs text-zinc-500">(Demo — no real charges)</span>
                 </div>
                 <div className="grid gap-4">
                   <Input
@@ -316,26 +318,26 @@ export default function CheckoutPage() {
                 </h2>
                 <div className="space-y-4 mb-6">
                   <div className="rounded-xl bg-white/[0.02] p-4">
-                    <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">
+                    <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 mb-2">
                       Shipping to
                     </p>
                     <p className="text-sm text-white">
                       {shipping.firstName} {shipping.lastName}
                     </p>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-zinc-400">
                       {shipping.address}, {shipping.city}, {shipping.state}{" "}
                       {shipping.zip}
                     </p>
-                    <p className="text-sm text-gray-400">{shipping.email}</p>
+                    <p className="text-sm text-zinc-400">{shipping.email}</p>
                   </div>
                   <div className="rounded-xl bg-white/[0.02] p-4">
-                    <p className="text-xs font-medium uppercase tracking-wider text-gray-500 mb-2">
+                    <p className="text-xs font-medium uppercase tracking-wider text-zinc-500 mb-2">
                       Payment
                     </p>
                     <p className="text-sm text-white">
                       {payment.nameOnCard || "Card on file"}
                     </p>
-                    <p className="text-sm text-gray-400">
+                    <p className="text-sm text-zinc-400">
                       **** **** **** {payment.cardNumber.slice(-4) || "4242"}
                     </p>
                   </div>
@@ -383,20 +385,20 @@ export default function CheckoutPage() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-white truncate">{product.name}</p>
-                    <p className="text-xs text-gray-500">{item.color}</p>
+                    <p className="text-xs text-zinc-500">{item.color}</p>
                   </div>
-                  <span className="text-sm text-gray-300">
+                  <span className="text-sm text-zinc-300">
                     {formatPrice(lineTotal)}
                   </span>
                 </li>
               ))}
             </ul>
             <div className="space-y-2 border-t border-white/10 pt-4 text-sm">
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between text-zinc-400">
                 <span>Subtotal</span>
                 <span>{formatPrice(subtotal)}</span>
               </div>
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between text-zinc-400">
                 <span>Shipping</span>
                 <span>
                   {shippingCost === 0 ? (
@@ -406,7 +408,7 @@ export default function CheckoutPage() {
                   )}
                 </span>
               </div>
-              <div className="flex justify-between text-gray-400">
+              <div className="flex justify-between text-zinc-400">
                 <span>Tax</span>
                 <span>{formatPrice(tax)}</span>
               </div>

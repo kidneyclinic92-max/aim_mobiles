@@ -71,20 +71,22 @@ export function ShopClient() {
   const priceRange = getPriceRange();
   const categoryParam = searchParams.get("category");
   const sortParam = searchParams.get("sort");
+  const brandParam = searchParams.get("brand");
 
   const pageTitle = useMemo(() => {
     if (sortParam === "newest") return "New Arrivals";
     if (sortParam === "bestseller") return "Deals";
+    if (brandParam) return brandParam;
     if (categoryParam) {
       const cat = categories.find((c) => c.id === categoryParam);
       return cat?.name ?? "Shop";
     }
     return content.shop.title;
-  }, [sortParam, categoryParam, categories, content.shop.title]);
+  }, [sortParam, categoryParam, brandParam, categories, content.shop.title]);
 
   const [filters, setFilters] = useState<FilterState>({
     search: "",
-    brands: [],
+    brands: brandParam ? [brandParam] : [],
     categories: categoryParam ? [categoryParam as FilterState["categories"][0]] : [],
     priceMin: priceRange.min,
     priceMax: priceRange.max,
@@ -104,10 +106,11 @@ export function ShopClient() {
     setFilters((f) => ({
       ...f,
       categories: categoryParam ? [categoryParam as FilterState["categories"][0]] : [],
+      brands: brandParam ? [brandParam] : [],
     }));
     if (sortParam === "newest") setSort("newest");
     else if (sortParam === "bestseller") setSort("featured");
-  }, [categoryParam, sortParam]);
+  }, [categoryParam, sortParam, brandParam]);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 400);
@@ -134,37 +137,33 @@ export function ShopClient() {
           <span className="text-zinc-300">{pageTitle}</span>
         </nav>
 
-        <h1 className="text-center text-3xl font-bold text-white sm:text-4xl">{pageTitle}</h1>
+        <h1 className="text-center text-3xl font-bold tracking-tight text-white sm:text-4xl">{pageTitle}</h1>
 
         {/* Sort tabs */}
-        <div className="mt-6 flex flex-wrap items-center justify-center border-b border-white/10">
-          {sortTabs.map((tab, i) => (
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 border-b border-white/[0.08] pb-4">
+          {sortTabs.map((tab) => (
             <button
               key={tab.value}
               onClick={() => setSort(tab.value)}
-              className={`relative px-3 py-2.5 text-sm font-medium transition-colors sm:px-4 ${
-                sort === tab.value ? "text-cyan-400" : "text-zinc-400 hover:text-white"
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
+                sort === tab.value
+                  ? "border border-cyan-400/30 bg-cyan-400/15 text-cyan-300"
+                  : "border border-transparent text-zinc-400 hover:bg-white/5 hover:text-white"
               }`}
             >
               {tab.label}
-              {sort === tab.value && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400" />
-              )}
-              {i < sortTabs.length - 1 && (
-                <span className="absolute right-0 top-1/2 h-3.5 w-px -translate-y-1/2 bg-white/15" />
-              )}
             </button>
           ))}
           <button
             onClick={() => setMobileFiltersOpen(true)}
-            className="ml-auto flex items-center gap-2 px-4 py-3 text-sm text-zinc-400 hover:text-white lg:hidden lg:ml-0"
+            className="ml-auto flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm text-zinc-400 transition-colors hover:text-white md:hidden"
           >
             <SlidersHorizontal className="h-4 w-4" />
             Filters
           </button>
         </div>
 
-        <div className="mt-6">
+        <div className="mt-8 md:grid md:grid-cols-[240px_1fr] md:gap-6 lg:grid-cols-[260px_1fr] lg:gap-8">
           <Filters
             filters={filters}
             onChange={setFilters}
@@ -172,24 +171,24 @@ export function ShopClient() {
             onMobileClose={() => setMobileFiltersOpen(false)}
           />
 
-          <div className="flex-1 min-w-0">
-            <p className="mb-5 text-center text-sm text-zinc-500">
+          <div className="min-w-0 flex-1">
+            <p className="mb-5 text-sm text-zinc-500">
               <span className="font-semibold text-white">{filtered.length}</span> products
             </p>
 
             {loading ? (
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
                 {Array.from({ length: 8 }).map((_, i) => (
                   <ProductCardSkeleton key={i} />
                 ))}
               </div>
             ) : filtered.length === 0 ? (
-              <div className="flex flex-col items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] py-20 text-center">
+              <div className="flex flex-col items-center justify-center rounded-2xl border border-white/[0.06] bg-white/[0.02] py-20 text-center">
                 <p className="text-lg font-medium text-zinc-300">No products found</p>
                 <p className="mt-1 text-sm text-zinc-500">Try adjusting your filters</p>
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">
                 {filtered.map((product) => (
                   <ProductCard key={product.id} product={product} onQuickView={handleQuickView} variant="grid" />
                 ))}

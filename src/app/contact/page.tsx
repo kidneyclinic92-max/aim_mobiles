@@ -35,7 +35,7 @@ export default function ContactPage() {
         <h1 className="mt-4 text-4xl font-bold text-white">
           {contact.title} <span className="text-gradient">{contact.titleHighlight}</span>
         </h1>
-        <p className="mx-auto mt-4 max-w-xl text-gray-400">{contact.intro}</p>
+        <p className="mx-auto mt-4 max-w-xl text-zinc-400">{contact.intro}</p>
       </AnimatedSection>
 
       <div className="grid gap-8 lg:grid-cols-3">
@@ -49,9 +49,9 @@ export default function ContactPage() {
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-500">{info.title}</p>
+                    <p className="text-sm font-medium text-zinc-500">{info.title}</p>
                     <p className="text-white font-medium">{info.value}</p>
-                    <p className="text-xs text-gray-500 mt-0.5">{info.description}</p>
+                    <p className="text-xs text-zinc-500 mt-0.5">{info.description}</p>
                   </div>
                 </div>
               </AnimatedSection>
@@ -87,7 +87,7 @@ export default function ContactPage() {
                 required
               />
               <div className="sm:col-span-2 space-y-2">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-300">
+                <label htmlFor="message" className="block text-sm font-medium text-zinc-300">
                   Message
                 </label>
                 <textarea
@@ -96,7 +96,7 @@ export default function ContactPage() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   required
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-gray-500 backdrop-blur-sm focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 resize-none"
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 backdrop-blur-sm focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 resize-none"
                   placeholder="How can we help you?"
                 />
               </div>

@@ -6,7 +6,6 @@ import { CategoriesGrid } from "@/components/home/CategoriesGrid";
 import { ProductSection } from "@/components/home/ProductSection";
 import { TrustSignals } from "@/components/home/TrustSignals";
 import { Testimonials } from "@/components/home/Testimonials";
-import { Newsletter } from "@/components/home/Newsletter";
 import { getBestSellers, getNewArrivals } from "@/lib/products";
 import { useSiteContent } from "@/store/content-context";
 
@@ -24,7 +23,6 @@ export default function HomePage() {
       <ProductSection
         title={bsSection.title}
         highlight={bsSection.highlight ?? ""}
-        subtitle={bsSection.eyebrow}
         products={bestSellers}
         viewAllHref={bsSection.viewAllHref}
       />
@@ -32,12 +30,10 @@ export default function HomePage() {
       <ProductSection
         title={naSection.title}
         highlight={naSection.highlight ?? ""}
-        subtitle={naSection.eyebrow}
         products={newArrivals}
         viewAllHref={naSection.viewAllHref}
       />
       <Testimonials />
-      <Newsletter />
     </>
   );
 }

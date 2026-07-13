@@ -21,10 +21,10 @@ export default function WishlistPage() {
       <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8">
         <AnimatedSection>
           <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-white/5">
-            <Heart className="h-12 w-12 text-gray-600" />
+            <Heart className="h-12 w-12 text-zinc-600" />
           </div>
           <h1 className="text-2xl font-bold text-white">Your wishlist is empty</h1>
-          <p className="mt-2 text-gray-400">
+          <p className="mt-2 text-zinc-400">
             Save items you love by clicking the heart icon.
           </p>
           <Link href="/shop" className="mt-8 inline-block">
@@ -41,7 +41,7 @@ export default function WishlistPage() {
         <h1 className="text-3xl font-bold text-white">
           My <span className="text-gradient">Wishlist</span>
         </h1>
-        <p className="mt-2 text-gray-400">
+        <p className="mt-2 text-zinc-400">
           {wishlistProducts.length} saved{" "}
           {wishlistProducts.length === 1 ? "item" : "items"}
         </p>

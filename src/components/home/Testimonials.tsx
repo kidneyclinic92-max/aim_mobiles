@@ -20,7 +20,7 @@ export function Testimonials() {
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14">
-          <SectionHeader eyebrow={testimonials.eyebrow} title={testimonials.title} highlight={testimonials.highlight} align="center" />
+          <SectionHeader title={testimonials.title} highlight={testimonials.highlight} align="center" />
         </AnimatedSection>
 
         <AnimatedSection>
@@ -40,7 +40,7 @@ export function Testimonials() {
               </p>
 
               <div className="mt-10 flex items-center justify-center gap-4">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-none border border-white/10 bg-white/[0.06] text-sm font-bold text-white backdrop-blur-md">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-white/[0.06] text-sm font-bold text-white backdrop-blur-md">
                   {t.avatar}
                 </div>
                 <div className="text-left">
@@ -51,15 +51,15 @@ export function Testimonials() {
             </div>
 
             <div className="mt-8 flex items-center justify-center gap-4">
-              <button onClick={() => setCurrent((c) => (c - 1 + items.length) % items.length)} className="flex h-11 w-11 items-center justify-center rounded-none border border-white/10 bg-white/[0.06] text-white backdrop-blur-md hover:bg-white/10 hover:border-white/20" aria-label="Previous">
+              <button onClick={() => setCurrent((c) => (c - 1 + items.length) % items.length)} className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white backdrop-blur-md hover:bg-white/10 hover:border-white/25" aria-label="Previous">
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <div className="flex gap-2">
                 {items.map((_, i) => (
-                  <button key={i} onClick={() => setCurrent(i)} className={`h-1.5 rounded-none transition-all ${i === current ? "w-8 bg-white" : "w-3 bg-white/20"}`} aria-label={`Review ${i + 1}`} />
+                  <button key={i} onClick={() => setCurrent(i)} className={`h-1.5 rounded-full transition-all ${i === current ? "w-8 bg-cyan-400" : "w-3 bg-white/20 hover:bg-white/40"}`} aria-label={`Review ${i + 1}`} />
                 ))}
               </div>
-              <button onClick={() => setCurrent((c) => (c + 1) % items.length)} className="flex h-11 w-11 items-center justify-center rounded-none border border-white/10 bg-white/[0.06] text-white backdrop-blur-md hover:bg-white/10 hover:border-white/20" aria-label="Next">
+              <button onClick={() => setCurrent((c) => (c + 1) % items.length)} className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white backdrop-blur-md hover:bg-white/10 hover:border-white/25" aria-label="Next">
                 <ChevronRight className="h-5 w-5" />
               </button>
             </div>

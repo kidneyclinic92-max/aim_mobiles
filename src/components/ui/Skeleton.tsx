@@ -4,7 +4,7 @@ export function Skeleton({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "animate-pulse rounded-xl bg-white/5",
+        "animate-pulse rounded-xl bg-white/[0.06]",
         className
       )}
     />
@@ -19,7 +19,6 @@ export function ProductCardSkeleton() {
         <Skeleton className="h-3 w-16" />
         <Skeleton className="h-5 w-3/4" />
         <Skeleton className="h-4 w-1/2" />
-        <Skeleton className="h-10 w-full" />
       </div>
     </div>
   );

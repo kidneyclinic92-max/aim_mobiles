@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown, SlidersHorizontal, X } from "lucide-react";
+import { ChevronDown, ChevronRight, SlidersHorizontal, X } from "lucide-react";
 import type { Category, FilterState } from "@/lib/types";
 import {
   getAllBrands,
@@ -8,6 +8,7 @@ import {
   getAllRamOptions,
   getAllStorageOptions,
   getPriceRange,
+  getProductsList,
   categories as categoryData,
 } from "@/lib/products";
 import { cn } from "@/lib/utils";
@@ -31,7 +32,7 @@ function FilterSection({
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="border-b border-white/5 py-4">
+    <div className="border-b border-white/[0.06] py-4">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between text-sm font-semibold text-white"
@@ -39,7 +40,7 @@ function FilterSection({
         {title}
         <ChevronDown
           className={cn(
-            "h-4 w-4 text-gray-500 transition-transform",
+            "h-4 w-4 text-zinc-500 transition-transform",
             open && "rotate-180"
           )}
         />
@@ -68,11 +69,52 @@ function CheckboxFilter({
         onChange={onChange}
         className="h-4 w-4 rounded border-white/20 bg-white/5 text-cyan-500 focus:ring-cyan-500/30 focus:ring-offset-0"
       />
-      <span className="flex-1 text-sm text-gray-300">{label}</span>
+      <span className="flex-1 text-sm text-zinc-300">{label}</span>
       {count !== undefined && (
-        <span className="text-xs text-gray-600">{count}</span>
+        <span className="text-xs text-zinc-500">{count}</span>
       )}
     </label>
+  );
+}
+
+function ListItem({
+  label,
+  count,
+  active,
+  onClick,
+}: {
+  label: string;
+  count?: number;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        "group flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm transition-colors",
+        active
+          ? "bg-cyan-400/10 font-semibold text-cyan-300"
+          : "text-zinc-300 hover:bg-white/5 hover:text-white"
+      )}
+    >
+      <span className="flex items-center gap-1.5">
+        <ChevronRight
+          className={cn(
+            "h-3.5 w-3.5 transition-all",
+            active
+              ? "text-cyan-400"
+              : "-ml-1 w-0 opacity-0 group-hover:ml-0 group-hover:w-3.5 group-hover:opacity-100"
+          )}
+        />
+        {label}
+      </span>
+      {count !== undefined && (
+        <span className={cn("text-xs", active ? "text-cyan-400/80" : "text-zinc-500")}>
+          {count}
+        </span>
+      )}
+    </button>
   );
 }
 
@@ -82,11 +124,19 @@ export function Filters({
   isMobileOpen,
   onMobileClose,
 }: FiltersProps) {
+  const products = getProductsList();
   const brands = getAllBrands();
   const ramOptions = getAllRamOptions();
   const storageOptions = getAllStorageOptions();
   const colorOptions = getAllColors();
   const priceRange = getPriceRange();
+
+  const categoryCounts = new Map<string, number>();
+  const brandCounts = new Map<string, number>();
+  for (const p of products) {
+    categoryCounts.set(p.category, (categoryCounts.get(p.category) ?? 0) + 1);
+    brandCounts.set(p.brand, (brandCounts.get(p.brand) ?? 0) + 1);
+  }
 
   const toggleArray = <T extends string>(
     arr: T[],
@@ -124,12 +174,56 @@ export function Filters({
 
   const content = (
     <>
-      <div className="flex items-center justify-between mb-4">
+      {/* Categories listing */}
+      <div className="mb-2">
+        <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+          Categories
+        </h2>
+        <div className="space-y-0.5">
+          <ListItem
+            label="All Products"
+            count={products.length}
+            active={filters.categories.length === 0}
+            onClick={() => onChange({ ...filters, categories: [] })}
+          />
+          {categoryData.map((cat) => (
+            <ListItem
+              key={cat.id}
+              label={cat.name}
+              count={categoryCounts.get(cat.id) ?? 0}
+              active={filters.categories.includes(cat.id)}
+              onClick={() =>
+                toggleArray(filters.categories, cat.id as Category, "categories")
+              }
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Brands listing */}
+      <div className="border-t border-white/[0.06] pt-4">
+        <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
+          Brands
+        </h2>
+        <div className="space-y-0.5">
+          {brands.map((brand) => (
+            <ListItem
+              key={brand}
+              label={brand}
+              count={brandCounts.get(brand) ?? 0}
+              active={filters.brands.includes(brand)}
+              onClick={() => toggleArray(filters.brands, brand, "brands")}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-between border-t border-white/[0.06] pt-4">
         <div className="flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4 text-cyan-400" />
           <h2 className="text-sm font-semibold text-white">Filters</h2>
           {activeCount > 0 && (
-            <span className="rounded-none border border-white/10 bg-white/[0.06] px-2 py-0.5 text-xs text-white">
+            <span className="rounded-full border border-cyan-400/30 bg-cyan-400/15 px-2 py-0.5 text-xs font-semibold text-cyan-300">
               {activeCount}
             </span>
           )}
@@ -137,36 +231,12 @@ export function Filters({
         {activeCount > 0 && (
           <button
             onClick={clearAll}
-            className="text-xs text-gray-500 hover:text-cyan-400"
+            className="text-xs text-zinc-500 transition-colors hover:text-cyan-400"
           >
             Clear all
           </button>
         )}
       </div>
-
-      <FilterSection title="Category">
-        {categoryData.map((cat) => (
-          <CheckboxFilter
-            key={cat.id}
-            label={cat.name}
-            checked={filters.categories.includes(cat.id)}
-            onChange={() =>
-              toggleArray(filters.categories, cat.id as Category, "categories")
-            }
-          />
-        ))}
-      </FilterSection>
-
-      <FilterSection title="Brand">
-        {brands.map((brand) => (
-          <CheckboxFilter
-            key={brand}
-            label={brand}
-            checked={filters.brands.includes(brand)}
-            onChange={() => toggleArray(filters.brands, brand, "brands")}
-          />
-        ))}
-      </FilterSection>
 
       <FilterSection title="Price Range">
         <div className="space-y-3 px-2">
@@ -182,9 +252,9 @@ export function Filters({
             className="w-full accent-cyan-500"
             aria-label="Maximum price"
           />
-          <div className="flex justify-between text-xs text-gray-400">
+          <div className="flex justify-between text-xs text-zinc-400">
             <span>${filters.priceMin}</span>
-            <span className="text-cyan-400 font-medium">${filters.priceMax}</span>
+            <span className="font-medium text-cyan-400">${filters.priceMax}</span>
           </div>
         </div>
       </FilterSection>
@@ -232,10 +302,15 @@ export function Filters({
 
   return (
     <>
+      {/* Desktop/tablet sidebar */}
+      <aside className="sticky top-32 hidden max-h-[calc(100vh-9rem)] self-start overflow-y-auto rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 scrollbar-hide md:block">
+        {content}
+      </aside>
+
       {/* Mobile drawer */}
       <div
         className={cn(
-          "fixed inset-0 z-[60] lg:hidden",
+          "fixed inset-0 z-[60] md:hidden",
           isMobileOpen ? "pointer-events-auto" : "pointer-events-none"
         )}
       >
@@ -256,7 +331,7 @@ export function Filters({
             <h2 className="text-lg font-bold text-white">Filters</h2>
             <button
               onClick={onMobileClose}
-              className="rounded-xl p-2 text-gray-400 hover:bg-white/5"
+              className="rounded-xl p-2 text-zinc-400 hover:bg-white/5 hover:text-white"
               aria-label="Close filters"
             >
               <X className="h-5 w-5" />

@@ -51,7 +51,7 @@ export function SearchBar({ autoFocus, onClose, className }: SearchBarProps) {
   return (
     <div ref={containerRef} className={`relative ${className || ""}`}>
       <div className="relative">
-        <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
+        <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500" />
         <input
           ref={inputRef}
           type="search"
@@ -59,7 +59,7 @@ export function SearchBar({ autoFocus, onClose, className }: SearchBarProps) {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => query.length >= 2 && setIsOpen(true)}
           placeholder={placeholder}
-          className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-10 text-sm text-white placeholder:text-gray-500 backdrop-blur-sm transition-all focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20"
+          className="w-full rounded-xl border border-white/10 bg-white/5 py-3 pl-11 pr-10 text-sm text-white placeholder:text-zinc-500 backdrop-blur-sm transition-all focus:border-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-400/15"
           aria-label="Search products"
           aria-expanded={isOpen}
           aria-haspopup="listbox"
@@ -70,7 +70,7 @@ export function SearchBar({ autoFocus, onClose, className }: SearchBarProps) {
               setQuery("");
               setIsOpen(false);
             }}
-            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1 text-gray-500 hover:text-white"
+            className="absolute right-3 top-1/2 -translate-y-1/2 rounded-lg p-1 text-zinc-500 hover:text-white"
             aria-label="Clear search"
           >
             <X className="h-4 w-4" />
@@ -107,7 +107,7 @@ export function SearchBar({ autoFocus, onClose, className }: SearchBarProps) {
                   <p className="text-sm font-medium text-white truncate">
                     {product.name}
                   </p>
-                  <p className="text-xs text-gray-500">{product.brand}</p>
+                  <p className="text-xs text-zinc-500">{product.brand}</p>
                 </div>
                 <span className="text-sm font-semibold text-cyan-400">
                   {formatPrice(product.price)}
@@ -120,7 +120,7 @@ export function SearchBar({ autoFocus, onClose, className }: SearchBarProps) {
 
       {isOpen && query.length >= 2 && results.length === 0 && (
         <div className="absolute top-full left-0 right-0 z-50 mt-2 rounded-xl border border-white/10 bg-dark-elevated p-6 text-center shadow-2xl">
-          <p className="text-sm text-gray-400">No products found for &ldquo;{query}&rdquo;</p>
+          <p className="text-sm text-zinc-400">No products found for &ldquo;{query}&rdquo;</p>
         </div>
       )}
     </div>

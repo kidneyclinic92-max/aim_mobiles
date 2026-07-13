@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Globe, Mail, MapPin, Phone, Rss, Share2, Video } from "lucide-react";
+import { AtSign, Camera, Mail, MapPin, MessageCircle, Phone, Play } from "lucide-react";
 import { Input } from "@/components/ui/Input";
 import { Button } from "@/components/ui/Button";
 import { useSiteContent } from "@/store/content-context";
 
-const socialIcons = [Share2, Rss, Globe, Video];
+const socialIcons = [AtSign, Camera, MessageCircle, Play];
 
 export function Footer() {
   const { content } = useSiteContent();
@@ -34,21 +34,21 @@ export function Footer() {
                   sizes="40px"
                 />
               </div>
-              <span className="text-lg font-bold text-zinc-500">
+              <span className="text-lg font-bold text-zinc-100">
                 {brandPrefix}{brandSuffix}
               </span>
             </Link>
-            <p className="max-w-xs text-sm leading-relaxed text-zinc-500">
+            <p className="max-w-xs text-sm leading-relaxed text-zinc-400">
               {site.description}
             </p>
             <div className="flex gap-2">
               {navigation.social.map((social, i) => {
-                const Icon = socialIcons[i] ?? Share2;
+                const Icon = socialIcons[i] ?? AtSign;
                 return (
                   <a
                     key={social.label}
                     href={social.href}
-                    className="flex h-10 w-10 items-center justify-center rounded-none border border-white/10 bg-white/[0.03] text-zinc-500 transition-all hover:border-white/20 hover:bg-white/[0.06] hover:text-zinc-200"
+                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-zinc-400 transition-all hover:border-cyan-400/30 hover:bg-white/[0.06] hover:text-cyan-300"
                     aria-label={social.label}
                   >
                     <Icon className="h-4 w-4" />
@@ -63,7 +63,7 @@ export function Footer() {
             <ul className="space-y-2.5 text-center">
               {navigation.footerShop.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-zinc-500 transition-colors hover:text-zinc-200">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-zinc-400 transition-colors hover:text-white">{link.label}</Link>
                 </li>
               ))}
             </ul>
@@ -74,11 +74,11 @@ export function Footer() {
             <ul className="space-y-2.5 text-center">
               {navigation.footerSupport.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-zinc-500 transition-colors hover:text-zinc-200">{link.label}</Link>
+                  <Link href={link.href} className="text-sm text-zinc-400 transition-colors hover:text-white">{link.label}</Link>
                 </li>
               ))}
             </ul>
-            <div className="mt-6 space-y-2.5 text-center text-sm text-zinc-500">
+            <div className="mt-6 space-y-2.5 text-center text-sm text-zinc-400">
               <p className="flex items-center justify-center gap-2.5"><Phone className="h-4 w-4 text-zinc-400" />{site.phone}</p>
               <p className="flex items-center justify-center gap-2.5"><Mail className="h-4 w-4 text-zinc-400" />{site.email}</p>
               <p className="flex items-center justify-center gap-2.5"><MapPin className="h-4 w-4 text-zinc-400" />{site.location}</p>
@@ -87,7 +87,7 @@ export function Footer() {
 
           <div>
             <h3 className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400">{footer.newsletterTitle}</h3>
-            <p className="mb-4 text-center text-sm text-zinc-500">{footer.newsletterDescription}</p>
+            <p className="mb-4 text-center text-sm text-zinc-400">{footer.newsletterDescription}</p>
             <form className="space-y-3">
               <Input type="email" placeholder={footer.newsletterPlaceholder} aria-label="Email" />
               <Button type="submit" className="w-full" size="sm">{footer.newsletterButton}</Button>
@@ -96,10 +96,10 @@ export function Footer() {
         </div>
 
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] pt-8 sm:flex-row">
-          <p className="text-xs text-zinc-600">&copy; {new Date().getFullYear()} {site.copyright}</p>
-          <div className="flex gap-6 text-xs text-zinc-600">
+          <p className="text-xs text-zinc-500">&copy; {new Date().getFullYear()} {site.copyright}</p>
+          <div className="flex gap-6 text-xs text-zinc-500">
             {navigation.legal.map((link) => (
-              <Link key={link.label} href={link.href} className="transition-colors hover:text-zinc-400">{link.label}</Link>
+              <Link key={link.label} href={link.href} className="transition-colors hover:text-zinc-300">{link.label}</Link>
             ))}
           </div>
         </div>

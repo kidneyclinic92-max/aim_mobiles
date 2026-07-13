@@ -24,11 +24,9 @@ export function Newsletter() {
     <section className="py-24 pb-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection>
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.08] p-8 sm:p-14 lg:p-20">
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-dark-elevated to-purple-500/10" />
-            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/20 blur-[80px] animate-float" />
-            <div className="absolute -bottom-20 -right-20 h-64 w-64 rounded-full bg-purple-500/20 blur-[80px] animate-float" style={{ animationDelay: "-3s" }} />
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(5,5,8,0.4)_100%)]" />
+          <div className="relative overflow-hidden rounded-2xl border border-white/[0.08] p-8 sm:p-14 lg:p-20">
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.07] via-dark-elevated to-purple-500/[0.07]" />
+            <div className="absolute -left-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/10 blur-[80px] animate-float" />
 
             <div className="relative mx-auto max-w-2xl text-center">
               <p className="eyebrow mb-6 mx-auto w-fit">
@@ -50,7 +48,7 @@ export function Newsletter() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={nl.placeholder}
                     required
-                    className="w-full rounded-none border border-white/10 bg-white/[0.06] py-3.5 pl-11 pr-4 text-white placeholder:text-zinc-600 backdrop-blur-md focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-white/10 transition-all"
+                    className="w-full rounded-xl border border-white/10 bg-white/[0.05] py-3.5 pl-11 pr-4 text-white placeholder:text-zinc-500 backdrop-blur-md focus:border-cyan-400/40 focus:outline-none focus:ring-2 focus:ring-cyan-400/15 transition-all"
                     aria-label="Email"
                   />
                 </div>
@@ -59,7 +57,7 @@ export function Newsletter() {
                 </Button>
               </form>
 
-              <p className="mt-4 text-xs text-zinc-600">{nl.disclaimer}</p>
+              <p className="mt-4 text-xs text-zinc-500">{nl.disclaimer}</p>
             </div>
           </div>
         </AnimatedSection>
