@@ -3,7 +3,7 @@ import type { Category, Product } from "@/lib/types";
 export type NavLink = { href: string; label: string };
 
 export type SectionCopy = {
-  eyebrow: string;
+  eyebrow?: string;
   title: string;
   highlight?: string;
   description?: string;
@@ -59,16 +59,41 @@ export type ContactInfoItem = {
   description: string;
 };
 
+export type ContactFormCopy = {
+  nameLabel: string;
+  emailLabel: string;
+  subjectLabel: string;
+  messageLabel: string;
+  messagePlaceholder: string;
+  submitLabel: string;
+};
+
 export type WarrantyStep = {
   step: string;
   title: string;
   description: string;
 };
 
+export type ShopSortTab = {
+  value: string;
+  label: string;
+};
+
+export type ShopBrowseCopy = {
+  tabLabel: string;
+  categoriesHeading: string;
+  brandsHeading: string;
+  allProductsLabel: string;
+  filtersHeading: string;
+  clearAllLabel: string;
+};
+
 export type SiteContent = {
   site: {
     name: string;
     logoLetter: string;
+    logoUrl: string;
+    headerTagline: string;
     tagline: string;
     description: string;
     metaTitle: string;
@@ -79,6 +104,9 @@ export type SiteContent = {
     location: string;
     hours: string;
     copyright: string;
+  };
+  announcement: {
+    message: string;
   };
   commerce: {
     freeShippingThreshold: number;
@@ -98,36 +126,34 @@ export type SiteContent = {
   home: {
     hero: {
       videoUrl: string;
-      eyebrow: string;
       headline: string;
       headlineHighlight: string;
+      primaryCta: string;
+      primaryCtaHref: string;
       secondaryCta: string;
       secondaryCtaHref: string;
       slides: HeroSlide[];
-      brandMarquee: string[];
     };
-    featured: SectionCopy & { viewAllHref?: string };
+    featured: SectionCopy & { viewAllHref?: string; viewAllLabel?: string };
     categories: SectionCopy;
-    bestSellers: SectionCopy & { viewAllHref: string };
-    newArrivals: SectionCopy & { viewAllHref: string };
+    bestSellers: SectionCopy & { viewAllHref: string; viewAllLabel?: string };
+    newArrivals: SectionCopy & { viewAllHref: string; viewAllLabel?: string };
     trustSignals: TrustSignal[];
     testimonials: SectionCopy & { items: Testimonial[] };
-    newsletter: {
-      eyebrow: string;
-      title: string;
-      highlight: string;
-      description: string;
-      placeholder: string;
-      buttonText: string;
-      disclaimer: string;
-      successMessage: string;
-    };
   };
   shop: {
-    eyebrow: string;
     title: string;
-    subtitle: string;
+    metaTitle: string;
+    metaDescription: string;
     searchPlaceholder: string;
+    breadcrumbHome: string;
+    newArrivalsTitle: string;
+    dealsTitle: string;
+    productsLabel: string;
+    emptyTitle: string;
+    emptyDescription: string;
+    sortTabs: ShopSortTab[];
+    browse: ShopBrowseCopy;
   };
   about: {
     metaTitle: string;
@@ -153,6 +179,7 @@ export type SiteContent = {
     intro: string;
     formTitle: string;
     successMessage: string;
+    form: ContactFormCopy;
     info: ContactInfoItem[];
   };
   warranty: {
@@ -174,6 +201,8 @@ export type SiteContent = {
     ctaHref: string;
   };
   footer: {
+    shopColumnTitle: string;
+    supportColumnTitle: string;
     newsletterTitle: string;
     newsletterDescription: string;
     newsletterPlaceholder: string;

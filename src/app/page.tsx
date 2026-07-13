@@ -25,6 +25,7 @@ export default function HomePage() {
         highlight={bsSection.highlight ?? ""}
         products={bestSellers}
         viewAllHref={bsSection.viewAllHref}
+        viewAllLabel={bsSection.viewAllLabel}
       />
       <TrustSignals />
       <ProductSection
@@ -32,6 +33,7 @@ export default function HomePage() {
         highlight={naSection.highlight ?? ""}
         products={newArrivals}
         viewAllHref={naSection.viewAllHref}
+        viewAllLabel={naSection.viewAllLabel}
       />
       <Testimonials />
     </>

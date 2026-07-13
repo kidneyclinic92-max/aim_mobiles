@@ -60,7 +60,7 @@ export function Header() {
           <Link href="/" className="group relative z-10 flex shrink-0 items-center gap-3">
             <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-zinc-600/40">
               <Image
-                src="/assets/icon.jpg"
+                src={site.logoUrl}
                 alt={site.name}
                 fill
                 className="object-cover"
@@ -72,7 +72,7 @@ export function Header() {
               <span className="block text-base font-bold text-zinc-100">
                 {brandPrefix}{brandSuffix}
               </span>
-              <span className="block text-[11px] text-zinc-400">Premium Mobile Store</span>
+              <span className="block text-[11px] text-zinc-400">{site.headerTagline}</span>
             </div>
           </Link>
 

@@ -12,13 +12,6 @@ import { Filters } from "./Filters";
 import { QuickViewModal } from "./QuickViewModal";
 import { ProductCardSkeleton } from "@/components/ui/Skeleton";
 
-const sortTabs: { value: SortOption; label: string }[] = [
-  { value: "featured", label: "Relevance" },
-  { value: "newest", label: "New" },
-  { value: "price-desc", label: "Highest Price" },
-  { value: "price-asc", label: "Lowest Price" },
-];
-
 function sortProducts(items: Product[], sort: SortOption, bestSellerOnly = false): Product[] {
   let sorted = bestSellerOnly ? items.filter((p) => p.isBestSeller) : [...items];
   switch (sort) {
@@ -74,15 +67,15 @@ export function ShopClient() {
   const brandParam = searchParams.get("brand");
 
   const pageTitle = useMemo(() => {
-    if (sortParam === "newest") return "New Arrivals";
-    if (sortParam === "bestseller") return "Deals";
+    if (sortParam === "newest") return content.shop.newArrivalsTitle;
+    if (sortParam === "bestseller") return content.shop.dealsTitle;
     if (brandParam) return brandParam;
     if (categoryParam) {
       const cat = categories.find((c) => c.id === categoryParam);
-      return cat?.name ?? "Shop";
+      return cat?.name ?? content.shop.title;
     }
     return content.shop.title;
-  }, [sortParam, categoryParam, brandParam, categories, content.shop.title]);
+  }, [sortParam, categoryParam, brandParam, categories, content.shop]);
 
   const [filters, setFilters] = useState<FilterState>({
     search: "",
@@ -132,7 +125,7 @@ export function ShopClient() {
       <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
         <nav className="mb-4 flex items-center justify-center gap-1.5 text-sm text-zinc-500">
-          <Link href="/" className="hover:text-cyan-400 transition-colors">Home</Link>
+          <Link href="/" className="hover:text-cyan-400 transition-colors">{content.shop.breadcrumbHome}</Link>
           <ChevronRight className="h-3.5 w-3.5" />
           <span className="text-zinc-300">{pageTitle}</span>
         </nav>
@@ -141,10 +134,10 @@ export function ShopClient() {
 
         {/* Sort tabs */}
         <div className="mt-6 flex flex-wrap items-center justify-center gap-2 border-b border-white/[0.08] pb-4">
-          {sortTabs.map((tab) => (
+          {content.shop.sortTabs.map((tab) => (
             <button
               key={tab.value}
-              onClick={() => setSort(tab.value)}
+              onClick={() => setSort(tab.value as SortOption)}
               className={`rounded-full px-4 py-2 text-sm font-medium transition-all ${
                 sort === tab.value
                   ? "border border-cyan-400/30 bg-cyan-400/15 text-cyan-300"
@@ -173,7 +166,7 @@ export function ShopClient() {
 
           <div className="min-w-0 flex-1">
             <p className="mb-5 text-sm text-zinc-500">
-              <span className="font-semibold text-white">{filtered.length}</span> products
+              <span className="font-semibold text-white">{filtered.length}</span> {content.shop.productsLabel}
             </p>
 
             {loading ? (
@@ -184,8 +177,8 @@ export function ShopClient() {
               </div>
             ) : filtered.length === 0 ? (
               <div className="flex flex-col items-center justify-center rounded-2xl border border-white/[0.06] bg-white/[0.02] py-20 text-center">
-                <p className="text-lg font-medium text-zinc-300">No products found</p>
-                <p className="mt-1 text-sm text-zinc-500">Try adjusting your filters</p>
+                <p className="text-lg font-medium text-zinc-300">{content.shop.emptyTitle}</p>
+                <p className="mt-1 text-sm text-zinc-500">{content.shop.emptyDescription}</p>
               </div>
             ) : (
               <div className="grid grid-cols-2 gap-4 lg:grid-cols-3 xl:grid-cols-4">

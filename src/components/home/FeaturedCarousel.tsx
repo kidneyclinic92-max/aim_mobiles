@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { getFeaturedProducts } from "@/lib/products";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Button } from "@/components/ui/Button";
 import { useSiteContent } from "@/store/content-context";
 import type { Product } from "@/lib/types";
 import { QuickViewModal } from "@/components/shop/QuickViewModal";
@@ -14,6 +17,8 @@ export function FeaturedCarousel() {
   const products = getFeaturedProducts();
   const [quickView, setQuickView] = useState<Product | null>(null);
   const section = content.home.featured;
+  const viewAllHref = section.viewAllHref ?? "/shop";
+  const viewAllLabel = section.viewAllLabel ?? "View all";
 
   return (
     <section className="py-24 relative overflow-hidden">
@@ -26,6 +31,11 @@ export function FeaturedCarousel() {
             highlight={section.highlight}
             description={section.description}
           />
+          <Link href={viewAllHref} className="mt-6 inline-block">
+            <Button variant="secondary" size="sm">
+              {viewAllLabel} <ArrowRight className="h-4 w-4" />
+            </Button>
+          </Link>
         </AnimatedSection>
 
         <div className="relative -mx-4 sm:-mx-6 lg:-mx-8">

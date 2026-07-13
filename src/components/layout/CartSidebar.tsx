@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Minus, Plus, ShoppingBag, Trash2, X } from "lucide-react";
 import { useCart } from "@/store/cart-context";
+import { useSiteContent } from "@/store/content-context";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 
@@ -18,9 +19,11 @@ export function CartSidebar() {
     removeItem,
     itemCount,
   } = useCart();
+  const { content } = useSiteContent();
+  const { freeShippingThreshold, shippingCost } = content.commerce;
 
   const lineItems = getLineItems();
-  const shipping = subtotal > 0 ? (subtotal >= 100 ? 0 : 9.99) : 0;
+  const shipping = subtotal > 0 ? (subtotal >= freeShippingThreshold ? 0 : shippingCost) : 0;
 
   return (
     <AnimatePresence>

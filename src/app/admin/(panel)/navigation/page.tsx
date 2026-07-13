@@ -62,7 +62,7 @@ export default function AdminNavigationPage() {
     <div>
       <div className="mb-8">
         <h1 className="text-2xl font-bold text-white">Navigation</h1>
-        <p className="mt-1 text-zinc-500">Edit header, mobile menu, and footer links.</p>
+        <p className="mt-1 text-zinc-500">Header (4 main links), mobile menu, footer shop/support links, and social.</p>
       </div>
 
       {error && <p className="mb-4 text-sm text-red-400">{error}</p>}

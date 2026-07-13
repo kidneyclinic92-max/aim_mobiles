@@ -13,17 +13,17 @@ import { QuickViewModal } from "@/components/shop/QuickViewModal";
 type ProductSectionProps = {
   title: string;
   highlight: string;
-  subtitle?: string;
   products: Product[];
   viewAllHref?: string;
+  viewAllLabel?: string;
 };
 
 export function ProductSection({
   title,
   highlight,
-  subtitle,
   products,
   viewAllHref = "/shop",
+  viewAllLabel = "View all",
 }: ProductSectionProps) {
   const [quickView, setQuickView] = useState<Product | null>(null);
 
@@ -31,10 +31,10 @@ export function ProductSection({
     <section className="py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-12 text-center">
-          <SectionHeader title={title} highlight={highlight} eyebrow={subtitle} />
+          <SectionHeader title={title} highlight={highlight} />
           <Link href={viewAllHref} className="mt-6 inline-block">
             <Button variant="secondary" size="sm">
-              View all <ArrowRight className="h-4 w-4" />
+              {viewAllLabel} <ArrowRight className="h-4 w-4" />
             </Button>
           </Link>
         </AnimatedSection>

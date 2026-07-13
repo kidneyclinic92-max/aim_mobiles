@@ -13,7 +13,8 @@ export default function ContactPage() {
   const { showToast } = useToast();
   const { content } = useSiteContent();
   const { contact } = content;
-  const [form, setForm] = useState({
+  const formCopy = contact.form;
+  const [formValues, setFormValues] = useState({
     name: "",
     email: "",
     subject: "",
@@ -23,7 +24,7 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     showToast(contact.successMessage);
-    setForm({ name: "", email: "", subject: "", message: "" });
+    setFormValues({ name: "", email: "", subject: "", message: "" });
   };
 
   return (
@@ -67,42 +68,42 @@ export default function ContactPage() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
               <Input
-                label="Name"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                label={formCopy.nameLabel}
+                value={formValues.name}
+                onChange={(e) => setFormValues({ ...formValues, name: e.target.value })}
                 required
               />
               <Input
-                label="Email"
+                label={formCopy.emailLabel}
                 type="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                value={formValues.email}
+                onChange={(e) => setFormValues({ ...formValues, email: e.target.value })}
                 required
               />
               <Input
-                label="Subject"
+                label={formCopy.subjectLabel}
                 className="sm:col-span-2"
-                value={form.subject}
-                onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                value={formValues.subject}
+                onChange={(e) => setFormValues({ ...formValues, subject: e.target.value })}
                 required
               />
               <div className="sm:col-span-2 space-y-2">
                 <label htmlFor="message" className="block text-sm font-medium text-zinc-300">
-                  Message
+                  {formCopy.messageLabel}
                 </label>
                 <textarea
                   id="message"
                   rows={5}
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  value={formValues.message}
+                  onChange={(e) => setFormValues({ ...formValues, message: e.target.value })}
                   required
                   className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-zinc-500 backdrop-blur-sm focus:border-cyan-500/50 focus:outline-none focus:ring-2 focus:ring-cyan-500/20 resize-none"
-                  placeholder="How can we help you?"
+                  placeholder={formCopy.messagePlaceholder}
                 />
               </div>
             </div>
             <Button type="submit" className="mt-6" size="lg">
-              Send Message
+              {formCopy.submitLabel}
             </Button>
           </form>
         </AnimatedSection>

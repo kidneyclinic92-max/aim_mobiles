@@ -6,7 +6,8 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronRight, LayoutGrid, Tag } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { getProductsList, categories as categoryData, getAllBrands } from "@/lib/products";
+import { useSiteContent } from "@/store/content-context";
+import { getProductsList, getCategoriesList, getAllBrands } from "@/lib/products";
 
 function SidebarLink({
   href,
@@ -55,10 +56,13 @@ function SidebarLink({
 export function BrowseSidebar() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const { content } = useSiteContent();
+  const { browse } = content.shop;
   const [open, setOpen] = useState(false);
 
   const products = getProductsList();
   const brands = getAllBrands();
+  const categoryData = getCategoriesList();
 
   const activeCategory = pathname === "/shop" ? searchParams.get("category") : null;
   const activeBrand = pathname === "/shop" ? searchParams.get("brand") : null;
@@ -94,7 +98,7 @@ export function BrowseSidebar() {
           className="text-[10px] font-semibold uppercase tracking-[0.2em]"
           style={{ writingMode: "vertical-rl" }}
         >
-          Browse
+          {browse.tabLabel}
         </span>
       </button>
 
@@ -111,13 +115,13 @@ export function BrowseSidebar() {
             <div className="mb-2 flex items-center gap-2 px-3">
               <LayoutGrid className="h-4 w-4 text-cyan-400" />
               <h2 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-400">
-                Categories
+                {browse.categoriesHeading}
               </h2>
             </div>
             <nav className="space-y-0.5" aria-label="Product categories">
               <SidebarLink
                 href="/shop"
-                label="All Products"
+                label={browse.allProductsLabel}
                 count={products.length}
                 active={pathname === "/shop" && !activeCategory && !activeBrand}
                 onNavigate={close}
@@ -137,7 +141,7 @@ export function BrowseSidebar() {
             <div className="mb-2 mt-7 flex items-center gap-2 border-t border-white/[0.06] px-3 pt-6">
               <Tag className="h-4 w-4 text-cyan-400" />
               <h2 className="text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-400">
-                Brands
+                {browse.brandsHeading}
               </h2>
             </div>
             <nav className="space-y-0.5" aria-label="Brands">

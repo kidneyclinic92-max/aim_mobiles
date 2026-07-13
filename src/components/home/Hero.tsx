@@ -185,9 +185,9 @@ export function Hero() {
                 animate="visible"
                 custom={2}
               >
-                <Link href="/shop">
+                <Link href={hero.primaryCtaHref}>
                   <Button size="lg">
-                    Shop Now
+                    {hero.primaryCta}
                     <ArrowRight className="h-4 w-4" />
                   </Button>
                 </Link>

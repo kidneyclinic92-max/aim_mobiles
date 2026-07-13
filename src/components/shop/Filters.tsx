@@ -9,10 +9,11 @@ import {
   getAllStorageOptions,
   getPriceRange,
   getProductsList,
-  categories as categoryData,
+  getCategoriesList,
 } from "@/lib/products";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { useSiteContent } from "@/store/content-context";
 
 type FiltersProps = {
   filters: FilterState;
@@ -124,7 +125,10 @@ export function Filters({
   isMobileOpen,
   onMobileClose,
 }: FiltersProps) {
+  const { content } = useSiteContent();
+  const { browse } = content.shop;
   const products = getProductsList();
+  const categoryData = getCategoriesList();
   const brands = getAllBrands();
   const ramOptions = getAllRamOptions();
   const storageOptions = getAllStorageOptions();
@@ -172,16 +176,16 @@ export function Filters({
     });
   };
 
-  const content = (
+  const filterContent = (
     <>
       {/* Categories listing */}
       <div className="mb-2">
         <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
-          Categories
+          {browse.categoriesHeading}
         </h2>
         <div className="space-y-0.5">
           <ListItem
-            label="All Products"
+            label={browse.allProductsLabel}
             count={products.length}
             active={filters.categories.length === 0}
             onClick={() => onChange({ ...filters, categories: [] })}
@@ -203,7 +207,7 @@ export function Filters({
       {/* Brands listing */}
       <div className="border-t border-white/[0.06] pt-4">
         <h2 className="mb-2 px-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-zinc-500">
-          Brands
+          {browse.brandsHeading}
         </h2>
         <div className="space-y-0.5">
           {brands.map((brand) => (
@@ -221,7 +225,7 @@ export function Filters({
       <div className="mt-6 flex items-center justify-between border-t border-white/[0.06] pt-4">
         <div className="flex items-center gap-2">
           <SlidersHorizontal className="h-4 w-4 text-cyan-400" />
-          <h2 className="text-sm font-semibold text-white">Filters</h2>
+          <h2 className="text-sm font-semibold text-white">{browse.filtersHeading}</h2>
           {activeCount > 0 && (
             <span className="rounded-full border border-cyan-400/30 bg-cyan-400/15 px-2 py-0.5 text-xs font-semibold text-cyan-300">
               {activeCount}
@@ -233,7 +237,7 @@ export function Filters({
             onClick={clearAll}
             className="text-xs text-zinc-500 transition-colors hover:text-cyan-400"
           >
-            Clear all
+            {browse.clearAllLabel}
           </button>
         )}
       </div>
@@ -304,7 +308,7 @@ export function Filters({
     <>
       {/* Desktop/tablet sidebar */}
       <aside className="sticky top-32 hidden max-h-[calc(100vh-9rem)] self-start overflow-y-auto rounded-2xl border border-white/[0.06] bg-white/[0.02] p-5 scrollbar-hide md:block">
-        {content}
+        {filterContent}
       </aside>
 
       {/* Mobile drawer */}
@@ -337,7 +341,7 @@ export function Filters({
               <X className="h-5 w-5" />
             </button>
           </div>
-          {content}
+          {filterContent}
         </div>
       </div>
     </>

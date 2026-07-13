@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, ShoppingBag, Trash2, ArrowLeft } from "lucide-react";
 import { useCart } from "@/store/cart-context";
+import { useSiteContent } from "@/store/content-context";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
@@ -11,10 +12,12 @@ import { AnimatedSection } from "@/components/ui/AnimatedSection";
 export default function CartPage() {
   const { getLineItems, subtotal, updateQuantity, removeItem, itemCount } =
     useCart();
+  const { content } = useSiteContent();
+  const { freeShippingThreshold, shippingCost, taxRate } = content.commerce;
 
   const lineItems = getLineItems();
-  const shipping = subtotal > 0 ? (subtotal >= 100 ? 0 : 9.99) : 0;
-  const tax = subtotal * 0.08;
+  const shipping = subtotal > 0 ? (subtotal >= freeShippingThreshold ? 0 : shippingCost) : 0;
+  const tax = subtotal * taxRate;
 
   if (lineItems.length === 0) {
     return (

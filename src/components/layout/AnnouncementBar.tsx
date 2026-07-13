@@ -16,7 +16,9 @@ export function AnnouncementBar() {
 
   if (!visible) return null;
 
-  const message = `Free shipping on orders over $${content.commerce.freeShippingThreshold} — ${content.site.tagline}`;
+  const message = content.announcement.message
+    .replace("{threshold}", String(content.commerce.freeShippingThreshold))
+    .replace("{tagline}", content.site.tagline);
 
   return (
     <div className="relative border-b border-white/[0.06] bg-zinc-900/90 text-center text-xs text-zinc-300 backdrop-blur-md after:absolute after:bottom-0 after:left-1/2 after:h-px after:w-1/2 after:-translate-x-1/2 after:bg-gradient-to-r after:from-transparent after:via-cyan-400/40 after:to-transparent">

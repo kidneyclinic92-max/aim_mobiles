@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, CreditCard, Lock, Truck } from "lucide-react";
 import { useCart } from "@/store/cart-context";
+import { useSiteContent } from "@/store/content-context";
 import { formatPrice } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
@@ -18,6 +19,8 @@ export default function CheckoutPage() {
   const router = useRouter();
   const { showToast } = useToast();
   const { getLineItems, subtotal, clearCart } = useCart();
+  const { content } = useSiteContent();
+  const { freeShippingThreshold, shippingCost: baseShippingCost, taxRate } = content.commerce;
   const lineItems = getLineItems();
   const [step, setStep] = useState<Step>("shipping");
   const [processing, setProcessing] = useState(false);
@@ -41,8 +44,8 @@ export default function CheckoutPage() {
     nameOnCard: "",
   });
 
-  const shippingCost = subtotal >= 100 ? 0 : 9.99;
-  const tax = subtotal * 0.08;
+  const shippingCost = subtotal >= freeShippingThreshold ? 0 : baseShippingCost;
+  const tax = subtotal * taxRate;
   const total = subtotal + shippingCost + tax;
 
   if (lineItems.length === 0) {

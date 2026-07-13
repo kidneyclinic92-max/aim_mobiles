@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/layout/AppShell";
+import { getSiteContent } from "@/lib/cms/store";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -10,14 +11,16 @@ const inter = Inter({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Aim Mobiles | Next-Gen Tech, Timeless Style",
-    template: "%s | Aim Mobiles",
-  },
-  description:
-    "Premium smartphones, earbuds, smartwatches, and accessories. Shop the latest mobile tech with free shipping, warranty, and expert support.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getSiteContent();
+  return {
+    title: {
+      default: content.site.metaTitle,
+      template: `%s | ${content.site.name}`,
+    },
+    description: content.site.metaDescription,
+  };
+}
 
 export default function RootLayout({
   children,

@@ -13,7 +13,7 @@ const sections = [
   {
     title: "Storefront",
     items: [
-      { href: "/admin/site", label: "Site Settings", icon: Settings, desc: "Brand, contact, SEO" },
+      { href: "/admin/site", label: "Site Settings", icon: Settings, desc: "Brand, logo, announcement, SEO, footer" },
       { href: "/admin/navigation", label: "Navigation", icon: Store, desc: "Menus and footer links" },
       { href: "/admin/commerce", label: "Commerce", icon: ShoppingBag, desc: "Shipping, tax, delivery" },
     ],
@@ -21,8 +21,8 @@ const sections = [
   {
     title: "Pages",
     items: [
-      { href: "/admin/home", label: "Home Page", icon: Home, desc: "Hero, testimonials, newsletter" },
-      { href: "/admin/shop", label: "Shop Page", icon: Store, desc: "Shop header and search" },
+      { href: "/admin/home", label: "Home Page", icon: Home, desc: "Hero carousel, sections, trust signals, testimonials" },
+      { href: "/admin/shop", label: "Shop Page", icon: Store, desc: "Titles, sort tabs, browse sidebar, search" },
       { href: "/admin/about", label: "About Page", icon: FileText, desc: "Story, stats, values" },
       { href: "/admin/contact", label: "Contact Page", icon: FileText, desc: "Contact info and form copy" },
       { href: "/admin/warranty", label: "Warranty Page", icon: FileText, desc: "Coverage and claims" },

@@ -2,12 +2,15 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { ShopClient } from "@/components/shop/ShopClient";
 import { ProductCardSkeleton } from "@/components/ui/Skeleton";
+import { getSiteContent } from "@/lib/cms/store";
 
-export const metadata: Metadata = {
-  title: "Shop",
-  description:
-    "Browse our full collection of premium smartphones, earbuds, smartwatches, and accessories.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const { shop } = await getSiteContent();
+  return {
+    title: shop.metaTitle,
+    description: shop.metaDescription,
+  };
+}
 
 function ShopLoading() {
   return (

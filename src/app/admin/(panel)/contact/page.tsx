@@ -33,6 +33,17 @@ export default function AdminContactPage() {
           <AdminField label="Success Message" value={contact.successMessage} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, successMessage: v } }))} />
         </AdminSection>
 
+        <AdminSection title="Contact Form">
+          <div className="grid gap-4 sm:grid-cols-2">
+            <AdminField label="Name Label" value={contact.form.nameLabel} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, form: { ...c.contact.form, nameLabel: v } } }))} />
+            <AdminField label="Email Label" value={contact.form.emailLabel} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, form: { ...c.contact.form, emailLabel: v } } }))} />
+            <AdminField label="Subject Label" value={contact.form.subjectLabel} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, form: { ...c.contact.form, subjectLabel: v } } }))} />
+            <AdminField label="Message Label" value={contact.form.messageLabel} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, form: { ...c.contact.form, messageLabel: v } } }))} />
+            <AdminField label="Message Placeholder" value={contact.form.messagePlaceholder} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, form: { ...c.contact.form, messagePlaceholder: v } } }))} />
+            <AdminField label="Submit Button" value={contact.form.submitLabel} onChange={(v) => update((c) => ({ ...c, contact: { ...c.contact, form: { ...c.contact.form, submitLabel: v } } }))} />
+          </div>
+        </AdminSection>
+
         <AdminSection title="Contact Info Cards">
           {contact.info.map((info, i) => (
             <div key={i} className="rounded-lg border border-white/5 bg-white/[0.02] p-4 space-y-3">

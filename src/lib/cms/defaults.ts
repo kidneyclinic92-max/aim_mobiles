@@ -6,6 +6,8 @@ export function getDefaultContent(): SiteContent {
     site: {
       name: "AimMobiles",
       logoLetter: "A",
+      logoUrl: "/assets/icon.jpg",
+      headerTagline: "Premium Mobile Store",
       tagline: "Next-Gen Tech, Timeless Style",
       description:
         "Premium smartphones, accessories, and cutting-edge mobile technology.",
@@ -18,6 +20,9 @@ export function getDefaultContent(): SiteContent {
       location: "San Francisco, CA",
       hours: "Mon–Sat: 10am–8pm · Sun: 11am–6pm",
       copyright: "Aim Mobiles. All rights reserved.",
+    },
+    announcement: {
+      message: "Free shipping on orders over ${threshold} — {tagline}",
     },
     commerce: {
       freeShippingThreshold: 100,
@@ -65,9 +70,10 @@ export function getDefaultContent(): SiteContent {
     home: {
       hero: {
         videoUrl: "/assets/herovideo.mp4",
-        eyebrow: "New Arrivals 2026",
         headline: "Next-Gen Tech,",
         headlineHighlight: "Timeless Style",
+        primaryCta: "Shop Now",
+        primaryCtaHref: "/shop",
         secondaryCta: "Browse Collection",
         secondaryCtaHref: "/shop",
         slides: [
@@ -99,32 +105,31 @@ export function getDefaultContent(): SiteContent {
             accent: "from-teal-500/20 to-cyan-600/10",
           },
         ],
-        brandMarquee: ["Apple", "Samsung", "Google", "Nothing", "Sony", "Anker"],
       },
       featured: {
-        eyebrow: "Curated",
         title: "Featured",
         highlight: "Products",
         description: "Hand-picked flagships and accessories our team loves.",
+        viewAllHref: "/shop",
+        viewAllLabel: "View all",
       },
       categories: {
-        eyebrow: "Categories",
         title: "Find Your Perfect",
         highlight: "Match",
         description:
           "Curated collections for every part of your mobile lifestyle.",
       },
       bestSellers: {
-        eyebrow: "Top Picks",
         title: "Best",
         highlight: "Sellers",
         viewAllHref: "/shop?sort=bestseller",
+        viewAllLabel: "View all",
       },
       newArrivals: {
-        eyebrow: "Just Landed",
         title: "New",
         highlight: "Arrivals",
         viewAllHref: "/shop?sort=newest",
+        viewAllLabel: "View all",
       },
       trustSignals: [
         {
@@ -153,7 +158,6 @@ export function getDefaultContent(): SiteContent {
         },
       ],
       testimonials: {
-        eyebrow: "Reviews",
         title: "Loved by",
         highlight: "Thousands",
         items: [
@@ -187,25 +191,33 @@ export function getDefaultContent(): SiteContent {
           },
         ],
       },
-      newsletter: {
-        eyebrow: "Exclusive Access",
-        title: "Stay Ahead of the",
-        highlight: "Curve",
-        description:
-          "Early access to drops, member-only deals, and expert picks. Join 50,000+ tech enthusiasts.",
-        placeholder: "you@email.com",
-        buttonText: "Subscribe",
-        disclaimer: "No spam. Unsubscribe anytime.",
-        successMessage:
-          "Thanks for subscribing! Check your inbox for a welcome offer.",
-      },
     },
     shop: {
-      eyebrow: "Collection",
       title: "Shop Everything",
-      subtitle:
-        "Flagships, wearables, and accessories — curated for quality.",
+      metaTitle: "Shop",
+      metaDescription:
+        "Browse our full collection of premium smartphones, earbuds, smartwatches, and accessories.",
       searchPlaceholder: "Search phones, earbuds, accessories…",
+      breadcrumbHome: "Home",
+      newArrivalsTitle: "New Arrivals",
+      dealsTitle: "Deals",
+      productsLabel: "products",
+      emptyTitle: "No products found",
+      emptyDescription: "Try adjusting your filters",
+      sortTabs: [
+        { value: "featured", label: "Relevance" },
+        { value: "newest", label: "New" },
+        { value: "price-desc", label: "Highest Price" },
+        { value: "price-asc", label: "Lowest Price" },
+      ],
+      browse: {
+        tabLabel: "Browse",
+        categoriesHeading: "Categories",
+        brandsHeading: "Brands",
+        allProductsLabel: "All Products",
+        filtersHeading: "Filters",
+        clearAllLabel: "Clear all",
+      },
     },
     about: {
       metaTitle: "About Us",
@@ -268,6 +280,14 @@ export function getDefaultContent(): SiteContent {
         "Have a question about a product, order, or warranty? We're here to help.",
       formTitle: "Send a Message",
       successMessage: "Message sent! We'll get back to you within 24 hours.",
+      form: {
+        nameLabel: "Name",
+        emailLabel: "Email",
+        subjectLabel: "Subject",
+        messageLabel: "Message",
+        messagePlaceholder: "How can we help you?",
+        submitLabel: "Send Message",
+      },
       info: [
         {
           icon: "phone",
@@ -349,6 +369,8 @@ export function getDefaultContent(): SiteContent {
       ctaHref: "/contact",
     },
     footer: {
+      shopColumnTitle: "Shop",
+      supportColumnTitle: "Support",
       newsletterTitle: "Newsletter",
       newsletterDescription: "Exclusive deals and early access.",
       newsletterPlaceholder: "Your email",

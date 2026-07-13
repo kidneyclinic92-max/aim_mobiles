@@ -27,7 +27,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2.5">
               <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-lg border border-zinc-700/50">
                 <Image
-                  src="/assets/icon.jpg"
+                  src={site.logoUrl}
                   alt={site.name}
                   fill
                   className="object-cover"
@@ -59,7 +59,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400">Shop</h3>
+            <h3 className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400">{footer.shopColumnTitle}</h3>
             <ul className="space-y-2.5 text-center">
               {navigation.footerShop.map((link) => (
                 <li key={link.href}>
@@ -70,7 +70,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400">Support</h3>
+            <h3 className="mb-4 text-center text-xs font-semibold uppercase tracking-[0.15em] text-zinc-400">{footer.supportColumnTitle}</h3>
             <ul className="space-y-2.5 text-center">
               {navigation.footerSupport.map((link) => (
                 <li key={link.href}>
